@@ -14,7 +14,7 @@ public class Mlecz extends Roslina {
 
     public Mlecz(Swiat swiat, point polozenie, int turaUrodzenia) {
         super(swiat, polozenie,
-                 SILA_MLECZ, INICJATYWA_MLECZ, turaUrodzenia, TypOrganizmu.MLECZ);
+                SILA_MLECZ, INICJATYWA_MLECZ, turaUrodzenia, TypOrganizmu.MLECZ);
         setKolor(new Color(217, 194, 32));
         setSzansaRozmnazania(0.2);
     }

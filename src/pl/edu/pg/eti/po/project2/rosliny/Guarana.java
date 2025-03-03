@@ -14,7 +14,7 @@ public class Guarana extends Roslina {
     private static final int INICJATYWA_GUARANY = 0;
 
     public Guarana(Swiat swiat, point polozenie, int turaUrodzenia) {
-        super( swiat, polozenie,
+        super(swiat, polozenie,
                 SILA_GUARANY, INICJATYWA_GUARANY, turaUrodzenia, TypOrganizmu.GUARANA);
         setKolor(new Color(168, 32, 201));
     }
@@ -30,7 +30,7 @@ public class Guarana extends Roslina {
         getSwiat().deleteOrganizm(this);
         attacker.goToThePlace(place);
         Log.addToLog(attacker.infoOrganism() + " zjada " + this.infoOrganism()
-                + "  i zwieksza swoja sile na " + Integer.toString(BONUS_POWER));
+                + "  i zwieksza swoja sile na " + BONUS_POWER);
         attacker.setSila(attacker.getSila() + BONUS_POWER);
         return true;
     }

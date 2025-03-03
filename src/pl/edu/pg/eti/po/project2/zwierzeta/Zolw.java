@@ -15,7 +15,7 @@ public class Zolw extends Zwierze {
     private static final int INICJATYWA_ZOLWA = 1;
 
     public Zolw(Swiat swiat, point polozenie, int turaUrodzenia) {
-        super(swiat, polozenie,  SILA_ZOLWA, INICJATYWA_ZOLWA, turaUrodzenia, TypOrganizmu.ZOLW);
+        super(swiat, polozenie, SILA_ZOLWA, INICJATYWA_ZOLWA, turaUrodzenia, TypOrganizmu.ZOLW);
         this.setZasiegRuchu(ZASIEG_RUCHU_ZOLWA);
         this.setSzansaWykonywaniaRuchu(SZANSA_WYKONYWANIA_RUCHU_ZOLWA);
         setKolor(new Color(2, 86, 2));

@@ -19,22 +19,22 @@ public abstract class Zwierze extends Organizm {
             if (nextPlace.equals(new point(-192, -441))) return;
             if (swiat.placeIsFree(nextPlace)) {
                 goToThePlace(nextPlace);
-              /*  rysujSwiat()*/
             } else {
-                if(nextPlace.equals(new point(-192, -441))) return;
+                if (nextPlace.equals(new point(-192, -441))) return;
                 Kolizja(swiat.contentOfPlace(nextPlace));
-               /* swiat.rysujSwiat;*/
                 break;
             }
         }
     }
+
     @Override
     public boolean isAnimal() {
         return true;
     }
+
     @Override
     public void Kolizja(Organizm other) {
-        if(typOrganizmu == other.getTypOrganizmu()) {   //ROZMNAZANIE
+        if (typOrganizmu == other.getTypOrganizmu()) {   //ROZMNAZANIE
             Random rand = new Random();
             if (rand.nextInt(100) < getSzansaRozmnazania() * 100) rozmnazanie(other);
         } else {
@@ -66,7 +66,6 @@ public abstract class Zwierze extends Organizm {
         }
 
 
-
         Organizm child = SpawnerOrganisms.spawnNewCreation(getTypOrganizmu(), this.getSwiat(), placeForChild);
         Log.addToLog("Urodzil sie " + child.infoOrganism());
 
@@ -78,16 +77,20 @@ public abstract class Zwierze extends Organizm {
     protected point nextMove() {
         Random rand = new Random();
 
-        if (rand.nextInt(100) >= (int)(szansaWykonaniaRuchu * 100)) return new point(-192, -441);
+        if (rand.nextInt(100) >= (int) (szansaWykonaniaRuchu * 100)) return new point(-192, -441);
         else return chooseAnyPlace();
 
     }
 
 
-    public int getZasiegRuchu() {return zasiegRuchu;}
+    public int getZasiegRuchu() {
+        return zasiegRuchu;
+    }
+
     public void setZasiegRuchu(int zasiegRuchu) {
         this.zasiegRuchu = zasiegRuchu;
     }
+
     public double getSzansaWykonaniaRuchu() {
         return szansaWykonaniaRuchu;
     }

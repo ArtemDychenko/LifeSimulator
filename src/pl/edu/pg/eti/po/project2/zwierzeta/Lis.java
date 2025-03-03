@@ -15,7 +15,7 @@ public class Lis extends Zwierze {
     private static final int INICJATYWA_LISA = 7;
 
     public Lis(Swiat swiat, point polozenie, int turaUrodzenia) {
-        super(swiat, polozenie,  SILA_LISA, INICJATYWA_LISA, turaUrodzenia, TypOrganizmu.LIS);
+        super(swiat, polozenie, SILA_LISA, INICJATYWA_LISA, turaUrodzenia, TypOrganizmu.LIS);
         this.setZasiegRuchu(ZASIEG_RUCHU_LISA);
         this.setSzansaWykonywaniaRuchu(SZANSA_WYKONYWANIA_RUCHU_LISA);
         setKolor(new Color(255, 128, 0));
@@ -39,7 +39,7 @@ public class Lis extends Zwierze {
         if (curY == 0) {
             Up = false;
             kierunki--;
-        } else if (getSwiat().getPlansza()[curY -1][curX] != null && getSwiat().getPlansza()[curY - 1][curX].getSila() > this.getSila()) {
+        } else if (getSwiat().getPlansza()[curY - 1][curX] != null && getSwiat().getPlansza()[curY - 1][curX].getSila() > this.getSila()) {
             Up = false;
             kierunki--;
         }
@@ -75,18 +75,18 @@ public class Lis extends Zwierze {
         while (true) {
             Random rand = new Random();
             int losowanyKierunek = rand.nextInt(4);
-            if (losowanyKierunek == (Direction.UP.ordinal()) && (Up == true)) {
+            if (losowanyKierunek == (Direction.UP.ordinal()) && (Up)) {
                 return new point(curX, curY - 1);
             }
-            if (losowanyKierunek == (Direction.DOWN.ordinal()) && (Down == true)) {
+            if (losowanyKierunek == (Direction.DOWN.ordinal()) && (Down)) {
                 return new point(curX, curY + 1);
             }
 
-            if (losowanyKierunek == (Direction.LEFT.ordinal()) && (Left == true)) {
+            if (losowanyKierunek == (Direction.LEFT.ordinal()) && (Left)) {
                 return new point(curX - 1, curY);
             }
 
-            if (losowanyKierunek == (Direction.RIGHT).ordinal() && (Right == true)) {
+            if (losowanyKierunek == (Direction.RIGHT).ordinal() && (Right)) {
                 return new point(curX + 1, curY);
             }
         }

@@ -12,8 +12,8 @@ public class BarszczSosnowskiego extends Roslina {
 
     public BarszczSosnowskiego(Swiat swiat, point polozenie, int turaUrodzenia) {
 
-        super( swiat, polozenie,
-                 SILA_BARSZCZ_SOSNOWSKIEGO, INICJATYWA_BARSZCZ_SOSNOWSKIEGO, turaUrodzenia, TypOrganizmu.BARSZCZ_SOSNOWSKIEGO);
+        super(swiat, polozenie,
+                SILA_BARSZCZ_SOSNOWSKIEGO, INICJATYWA_BARSZCZ_SOSNOWSKIEGO, turaUrodzenia, TypOrganizmu.BARSZCZ_SOSNOWSKIEGO);
         setKolor(new Color(82, 0, 0));
         setSzansaRozmnazania(0.05);
     }
@@ -52,18 +52,13 @@ public class BarszczSosnowskiego extends Roslina {
 
 
         for (int i = 0; i < 4; i++) {
-            if (i == 0 && (Up == true)) {
+            if (i == 0 && (Up)) {
                 tmpOrganizm = getSwiat().contentOfPlace(new point(curX, curY - 1));
-            }
-            else if (i == 1 && (Down == true)) {
+            } else if (i == 1 && (Down)) {
                 tmpOrganizm = getSwiat().contentOfPlace(new point(curX, curY + 1));
-            }
-
-            else if (i == 2 && (Left == true)) {
+            } else if (i == 2 && (Left)) {
                 tmpOrganizm = getSwiat().contentOfPlace(new point(curX - 1, curY));
-            }
-
-            else if (i == 3 && (Right == true)) {
+            } else if (i == 3 && (Right)) {
                 tmpOrganizm = getSwiat().contentOfPlace(new point(curX + 1, curY));
             }
             if (tmpOrganizm != null && tmpOrganizm.isAnimal()
@@ -72,11 +67,12 @@ public class BarszczSosnowskiego extends Roslina {
                 Log.addToLog(infoOrganism() + " zabija " + tmpOrganizm.infoOrganism());
             }
         }
-            Random rand = new Random();
-            int tmpLosowanie = rand.nextInt(100);
-            if (tmpLosowanie < getSzansaRozmnazania() * 100) Rozprzestrzenianie();
+        Random rand = new Random();
+        int tmpLosowanie = rand.nextInt(100);
+        if (tmpLosowanie < getSzansaRozmnazania() * 100) Rozprzestrzenianie();
 
     }
+
     @Override
     public String nameTypOrganizmu() {
         return "Barszcz Sosnowskiego";

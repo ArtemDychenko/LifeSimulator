@@ -14,7 +14,7 @@ public class WilczeJagody extends Roslina {
     private static final int INICJATYWA_WILCZE_JAGODY = 0;
 
     public WilczeJagody(Swiat swiat, point polozenie, int turaUrodzenia) {
-        super( swiat, polozenie, SILA_WILCZE_JAGODY, INICJATYWA_WILCZE_JAGODY, turaUrodzenia, TypOrganizmu.WILCZE_JAGODY);
+        super(swiat, polozenie, SILA_WILCZE_JAGODY, INICJATYWA_WILCZE_JAGODY, turaUrodzenia, TypOrganizmu.WILCZE_JAGODY);
         setKolor(new Color(0, 0, 0));
         setSzansaRozmnazania(0.05);
     }

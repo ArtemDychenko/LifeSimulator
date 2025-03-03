@@ -15,13 +15,13 @@ public class Czlowiek extends Zwierze {
     private static final int SILA_CZLOWIEKA = 5;
     private static final int INICJATYWA_CZLOWIEKA = 4;
     private Direction direction;
-    private Skill skill;
+    private final Skill skill;
 
     public Czlowiek(Swiat swiat, point polozenie, int turaUrodzenia) {
-        super( swiat, polozenie,  SILA_CZLOWIEKA, INICJATYWA_CZLOWIEKA, turaUrodzenia, TypOrganizmu.CZLOWIEK);
+        super(swiat, polozenie, SILA_CZLOWIEKA, INICJATYWA_CZLOWIEKA, turaUrodzenia, TypOrganizmu.CZLOWIEK);
         this.setZasiegRuchu(ZASIEG_RUCHU_CZLOWIEKA);
         this.setSzansaWykonywaniaRuchu(SZANSA_WYKONYWANIA_RUCHU_CZLOWIEKA);
-        direction= Direction.STAY;
+        direction = Direction.STAY;
         setKolor(new Color(25, 12, 189));
         skill = new Skill();
     }
@@ -50,18 +50,17 @@ public class Czlowiek extends Zwierze {
         }
 
         point przyszlaPozycja;
-        if (direction == Direction.DOWN && Down == true) return new point(x, y + 1);
-        if (direction == Direction.UP && Up == true) return new point(x, y - 1);
-        if (direction == Direction.LEFT && Left == true) return new point(x - 1, y);
-        if (direction == Direction.RIGHT && Right == true) return new point(x + 1, y);
+        if (direction == Direction.DOWN && Down) return new point(x, y + 1);
+        if (direction == Direction.UP && Up) return new point(x, y - 1);
+        if (direction == Direction.LEFT && Left) return new point(x - 1, y);
+        if (direction == Direction.RIGHT && Right) return new point(x + 1, y);
         else return new point(x, y);
     }
 
     public void MagicElixir() {
         if (this.getSkill().getIterator() > 0) {
             this.setSila(this.getSkill().getEndPoint() + skill.getTime());
-        }
-        else {
+        } else {
             this.setSila(this.getSkill().getEndPoint() - skill.getTime());
         }
     }
@@ -92,7 +91,9 @@ public class Czlowiek extends Zwierze {
         return "Czlowiek";
     }
 
-    public Skill getSkill() {return skill;}
+    public Skill getSkill() {
+        return skill;
+    }
 
     public void setDirection(Direction direction) {
         this.direction = direction;

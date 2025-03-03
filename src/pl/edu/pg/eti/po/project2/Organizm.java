@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.Random;
 
 
-
 public abstract class Organizm {
     public enum TypOrganizmu {
         CZLOWIEK,
@@ -18,7 +17,7 @@ public abstract class Organizm {
         MLECZ,
         GUARANA,
         WILCZE_JAGODY,
-        BARSZCZ_SOSNOWSKIEGO;
+        BARSZCZ_SOSNOWSKIEGO
     }
 
 
@@ -27,7 +26,7 @@ public abstract class Organizm {
         DOWN,
         LEFT,
         RIGHT,
-        STAY;
+        STAY
     }
 
     protected Swiat swiat;
@@ -47,10 +46,10 @@ public abstract class Organizm {
 
 
     public abstract void Akcja();
+
     public abstract void Kolizja(Organizm other);
 
     public abstract boolean isAnimal();
-
 
 
     public Organizm(Swiat swiat, point polozenie, int sila, int inicjatywa, int turaUrodzenia, TypOrganizmu typOrganizmu) {
@@ -100,30 +99,28 @@ public abstract class Organizm {
         while (true) {
             Random rand = new Random();
             int losowanyKierunek = rand.nextInt(4);
-            if (losowanyKierunek == (Direction.UP.ordinal()) && (Up == true)) {
+            if (losowanyKierunek == (Direction.UP.ordinal()) && (Up)) {
                 return new point(curX, curY - 1);
             }
-            if (losowanyKierunek == (Direction.DOWN.ordinal()) && (Down == true) ) {
+            if (losowanyKierunek == (Direction.DOWN.ordinal()) && (Down)) {
                 return new point(curX, curY + 1);
             }
 
-            if (losowanyKierunek == (Direction.LEFT.ordinal()) && (Left == true)) {
+            if (losowanyKierunek == (Direction.LEFT.ordinal()) && (Left)) {
                 return new point(curX - 1, curY);
             }
 
-            if (losowanyKierunek == (Direction.RIGHT).ordinal() && (Right == true) ) {
+            if (losowanyKierunek == (Direction.RIGHT).ordinal() && (Right)) {
                 return new point(curX + 1, curY);
             }
         }
-        /*return new point(-192, -441);*/
-
     }
 
     public point chooseFreePlace() {
         boolean Up = true;
         boolean Down = true;
-        Boolean Left = true;
-        Boolean Right = true;
+        boolean Left = true;
+        boolean Right = true;
         int curX = polozenie.getX();
         int curY = polozenie.getY();
         int kierunki = 4;
@@ -166,23 +163,21 @@ public abstract class Organizm {
         while (true) {
             Random rand = new Random();
             int losowanyKierunek = rand.nextInt(4);
-            if (losowanyKierunek == (Direction.UP.ordinal()) && (Up == true)) {
+            if (losowanyKierunek == (Direction.UP.ordinal()) && (Up)) {
                 return new point(curX, curY - 1);
             }
-            if (losowanyKierunek == (Direction.DOWN.ordinal()) && (Down == true) ) {
+            if (losowanyKierunek == (Direction.DOWN.ordinal()) && (Down)) {
                 return new point(curX, curY + 1);
             }
 
-            if (losowanyKierunek == (Direction.LEFT.ordinal()) && (Left == true)) {
+            if (losowanyKierunek == (Direction.LEFT.ordinal()) && (Left)) {
                 return new point(curX - 1, curY);
             }
 
-            if (losowanyKierunek == (Direction.RIGHT).ordinal() && (Right == true) ) {
+            if (losowanyKierunek == (Direction.RIGHT).ordinal() && (Right)) {
                 return new point(curX + 1, curY);
             }
         }
-        /*return new point(-192, -441);*/
-
     }
 
     static TypOrganizmu losujGatunekOrganizmu() {
@@ -210,7 +205,10 @@ public abstract class Organizm {
         this.polozenie.setY(place.getY());
     }
 
-    public int getSila() {return sila;}
+    public int getSila() {
+        return sila;
+    }
+
     public boolean specialAction(Organizm attacker, Organizm victim) {
         return false;
     }
@@ -218,18 +216,42 @@ public abstract class Organizm {
     public void setTypOrganizmu(TypOrganizmu value) {
         this.typOrganizmu = value;
     }
+
     public void setInicjatywa(int value) {
         this.inicjatywa = value;
     }
 
-    public point getPolozenie() {return polozenie;}
-    public Swiat getSwiat() {return swiat;}
-    public TypOrganizmu getTypOrganizmu() {return typOrganizmu;}
-    public boolean getCzyZywy() {return CzyZywy;}
-    public boolean getCzyRozmnozylSie() {return CzyRozmnozylSie;}
-    public int getInicjatywa() {return inicjatywa;}
-    public int getTura() {return turaUrodzenia;}
-    public Color getKolor() {return kolor;}
+    public point getPolozenie() {
+        return polozenie;
+    }
+
+    public Swiat getSwiat() {
+        return swiat;
+    }
+
+    public TypOrganizmu getTypOrganizmu() {
+        return typOrganizmu;
+    }
+
+    public boolean getCzyZywy() {
+        return CzyZywy;
+    }
+
+    public boolean getCzyRozmnozylSie() {
+        return CzyRozmnozylSie;
+    }
+
+    public int getInicjatywa() {
+        return inicjatywa;
+    }
+
+    public int getTura() {
+        return turaUrodzenia;
+    }
+
+    public Color getKolor() {
+        return kolor;
+    }
 
     public String infoOrganism() {
         return (nameTypOrganizmu() + " x[" + polozenie.getX() + "] y["
@@ -239,17 +261,28 @@ public abstract class Organizm {
     public void setKolor(Color kolor) {
         this.kolor = kolor;
     }
+
     public void setCzyZywy(boolean value) {
         this.CzyZywy = value;
     }
+
     public void setSila(int value) {
         this.sila = value;
     }
 
-    public void setTura(int value) {this.turaUrodzenia = value;}
+    public void setTura(int value) {
+        this.turaUrodzenia = value;
+    }
+
     public void setSzansaRozmnazania(double szansaRozmnazania) {
         this.szansaRozmnazania = szansaRozmnazania;
     }
-    public double getSzansaRozmnazania() {return szansaRozmnazania;}
-    public void setCzyRozmnozylSie(boolean value) {this.CzyRozmnozylSie = value;}
+
+    public double getSzansaRozmnazania() {
+        return szansaRozmnazania;
+    }
+
+    public void setCzyRozmnozylSie(boolean value) {
+        this.CzyRozmnozylSie = value;
+    }
 }

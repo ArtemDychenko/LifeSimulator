@@ -5,8 +5,8 @@ public class Skill {
     private final int COOLDOWN_SKILL = 5;
     private final int VALUE_SKILL = 10;
 
-    protected  boolean isAvailable;
-    protected  boolean isActive;
+    protected boolean isAvailable;
+    protected boolean isActive;
 
     protected int startPoint;
     protected int momentPoint;
@@ -38,6 +38,7 @@ public class Skill {
             isAvailable = true;
         }
     }
+
     public void Aktywuj() {
         if (cooldown == 0) {
             isActive = true;
@@ -49,19 +50,17 @@ public class Skill {
 
             if (range > 0) {
                 this.setIterator(-1);
-            }
-            else if (range == 0) {
+            } else if (range == 0) {
                 this.setIterator(0);
-            }
-            else if (range < 0) {
+            } else if (range < 0) {
                 this.setIterator(1);
             }
 
-        }
-        else if (cooldown > 0) {
-            Log.addToLog("Umiejetnosc 'Magiczny Eliksir' mozna aktywowac tylko po " + cooldown +" turach\n");
+        } else if (cooldown > 0) {
+            Log.addToLog("Umiejetnosc 'Magiczny Eliksir' mozna aktywowac tylko po " + cooldown + " turach\n");
         }
     }
+
     public void Dezaktywuj() {
         this.time = 0;
         this.cooldown = COOLDOWN_SKILL;
@@ -69,19 +68,54 @@ public class Skill {
         isAvailable = false;
         Log.addToLog("Skill is off");
     }
-    public boolean ifActive() { return isActive; };
-    public boolean ifIsAvailable() { return isAvailable; };
-    public int getTime() { return time; };
-    public void setActive(boolean value) {this.isActive = value;}
-    public void setAvailable(boolean value) {this.isAvailable = value;}
-    public void setTime(int value) { this.time = time; };
-    public void setEndtPoint(int sila) { this.endPoint = sila; }
-    public int getEndPoint() { return endPoint; };
-    public int getCooldown() { return cooldown; };
-    public void setCooldown(int value) { this.cooldown = value; };
-    public int getIterator() { return iterator; };
-    public void setIterator(int value) { this.iterator = value; };
+
+    public boolean ifActive() {
+        return isActive;
+    }
+
+    public boolean ifIsAvailable() {
+        return isAvailable;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setActive(boolean value) {
+        this.isActive = value;
+    }
+
+    public void setAvailable(boolean value) {
+        this.isAvailable = value;
+    }
+
+    public void setTime(int value) {
+        this.time = time;
+    }
+
+    public void setEndtPoint(int sila) {
+        this.endPoint = sila;
+    }
+
+    public int getEndPoint() {
+        return endPoint;
+    }
+
+    public int getCooldown() {
+        return cooldown;
+    }
+
+    public void setCooldown(int value) {
+        this.cooldown = value;
+    }
+
+    public int getIterator() {
+        return iterator;
+    }
+
+    public void setIterator(int value) {
+        this.iterator = value;
+    }
 
 
-
-};
+}

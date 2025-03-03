@@ -17,7 +17,7 @@ public class Antylopa extends Zwierze {
 
 
     public Antylopa(Swiat swiat, point polozenie, int turaUrodzenia) {
-        super(swiat, polozenie,  SILA_ANTYLOPY, INICJATYWA_ANTYLOPY, turaUrodzenia, TypOrganizmu.ANTYLOPA);
+        super(swiat, polozenie, SILA_ANTYLOPY, INICJATYWA_ANTYLOPY, turaUrodzenia, TypOrganizmu.ANTYLOPA);
         this.setZasiegRuchu(ZASIEG_RUCHU_ANTYLOPY);
         this.setSzansaWykonywaniaRuchu(SZANSA_WYKONYWANIA_RUCHU_ANTYLOPY);
         setKolor(new Color(153, 76, 0));

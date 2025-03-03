@@ -11,12 +11,15 @@ import java.awt.event.KeyListener;
 
 public class SwiatGrafika implements ActionListener, KeyListener {
 
-    private JFrame frame;
-    private JMenu menu;
-    private JMenuItem newGame, load, save, exit;
-    private JPanel mainPanel;
-    private Dimension dimension;
-    private Toolkit toolkit;
+    private final JFrame frame;
+    private final JMenu menu;
+    private final JMenuItem newGame;
+    private final JMenuItem load;
+    private final JMenuItem save;
+    private final JMenuItem exit;
+    private final JPanel mainPanel;
+    private final Dimension dimension;
+    private final Toolkit toolkit;
     private LogGrafika logGrafika = null;
     private AnimalInfo animalInfo = null;
 
@@ -37,7 +40,7 @@ public class SwiatGrafika implements ActionListener, KeyListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        JMenuBar menuBar  = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         menu = new JMenu("Menu");
         newGame = new JMenuItem("New game");
         load = new JMenuItem("Load");
@@ -120,8 +123,7 @@ public class SwiatGrafika implements ActionListener, KeyListener {
             int keyCode = e.getKeyCode();
             if (keyCode == KeyEvent.VK_ENTER) {
 
-            }
-           else if (swiat.IsHumanAlive()) {
+            } else if (swiat.IsHumanAlive()) {
                 if (keyCode == KeyEvent.VK_UP) {
                     swiat.getHuman().setDirection(Organizm.Direction.UP);
                 } else if (keyCode == KeyEvent.VK_DOWN) {
@@ -158,8 +160,8 @@ public class SwiatGrafika implements ActionListener, KeyListener {
             } else if (!swiat.iSHumanAlive && (keyCode == KeyEvent.VK_UP ||
                     keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_LEFT ||
                     keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_P)) {
-                    Log.addToLog("Human is die");
-                    logGrafika.showLog();
+                Log.addToLog("Human is die");
+                logGrafika.showLog();
                 return;
             } else {
                 Log.addToLog("\nWrong symbol");
@@ -187,13 +189,13 @@ public class SwiatGrafika implements ActionListener, KeyListener {
         private String text;
         private final String instriction = "by Artem Dychenko 192441\nArrows - manage human\n" +
                 "P - active skill\nEnter - next round\n";
-        private JTextArea textArea;
+        private final JTextArea textArea;
 
         public LogGrafika() {
             super();
-            setBounds(planszaGrafika.getX()  ,
-                    mainPanel.getY() + planszaGrafika.getHeight() + SPACE * 3 ,
-                    mainPanel.getWidth()  - SPACE * 2 , mainPanel.getHeight() * 2 / 6 - SPACE * 3);
+            setBounds(planszaGrafika.getX(),
+                    mainPanel.getY() + planszaGrafika.getHeight() + SPACE * 3,
+                    mainPanel.getWidth() - SPACE * 2, mainPanel.getHeight() * 2 / 6 - SPACE * 3);
             text = Log.writeLog();
             textArea = new JTextArea(text);
             textArea.setEditable(false);
@@ -216,11 +218,8 @@ public class SwiatGrafika implements ActionListener, KeyListener {
     private class PlanszaGrafika extends JPanel {
         private final int widthB;
         private final int heightB;
-        private PolePlanszy[][] polePlanszy;
-        private Swiat SWIAT;
-
-
-
+        private final PolePlanszy[][] polePlanszy;
+        private final Swiat SWIAT;
 
 
         public PlanszaGrafika(Swiat swiat) {
@@ -238,9 +237,8 @@ public class SwiatGrafika implements ActionListener, KeyListener {
                     polePlanszy[i][j].addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if (e.getSource() instanceof PolePlanszy) {
-                                PolePlanszy tmpPole = (PolePlanszy) e.getSource();
-                                if (tmpPole.isEmpty == true) {
+                            if (e.getSource() instanceof PolePlanszy tmpPole) {
+                                if (tmpPole.isEmpty) {
                                     ListaOrganizmow listaOrganizmow = new ListaOrganizmow
                                             (tmpPole.getX() + frame.getX(),
                                                     tmpPole.getY() + frame.getY(),
@@ -260,66 +258,65 @@ public class SwiatGrafika implements ActionListener, KeyListener {
             this.setLayout(new GridLayout(heightB, widthB));
 
         }
-            private class PolePlanszy extends JButton {
-                private boolean isEmpty;
-                private Color kolor;
-                private final int curX;
-                private final int curY;
 
-                public PolePlanszy(int x, int y) {
-                    super();
-                    kolor = Color.WHITE;
-                    setBackground(kolor);
-                    isEmpty = true;
-                    curX = x;
-                    curY = y;
-                }
+        private class PolePlanszy extends JButton {
+            private boolean isEmpty;
+            private Color kolor;
+            private final int curX;
+            private final int curY;
 
-                public boolean isEmpty() {
-                    return isEmpty;
-                }
-
-                public void setEmpty(boolean empty) {
-                    isEmpty = empty;
-                }
-
-                public Color getKolor() {
-                    return kolor;
-                }
-
-                public void setKolor(Color kolor) {
-                    this.kolor = kolor;
-                    setBackground(kolor);
-                }
-
-                public int getPozX() {
-                    return curX;
-                }
-
-                public int getPozY() {
-                    return curY;
-                }
-
+            public PolePlanszy(int x, int y) {
+                super();
+                kolor = Color.WHITE;
+                setBackground(kolor);
+                isEmpty = true;
+                curX = x;
+                curY = y;
             }
 
-                public void rysujPlansze() {
-                    for (int i = 0; i < heightB; i++) {
-                        for (int j = 0; j < widthB; j++) {
-                            Organizm tmpOrganizm = swiat.getPlansza()[i][j];
-                            if (tmpOrganizm != null) {
-                                polePlanszy[i][j].setEmpty(false);
-                                polePlanszy[i][j].setEnabled(false);
-                                polePlanszy[i][j].setKolor(tmpOrganizm.getKolor());
-                            } else {
-                                polePlanszy[i][j].setEmpty(true);
-                                polePlanszy[i][j].setEnabled(true);
-                                polePlanszy[i][j].setKolor(Color.WHITE);
-                            }
-                        }
+            public boolean isEmpty() {
+                return isEmpty;
+            }
+
+            public void setEmpty(boolean empty) {
+                isEmpty = empty;
+            }
+
+            public Color getKolor() {
+                return kolor;
+            }
+
+            public void setKolor(Color kolor) {
+                this.kolor = kolor;
+                setBackground(kolor);
+            }
+
+            public int getPozX() {
+                return curX;
+            }
+
+            public int getPozY() {
+                return curY;
+            }
+
+        }
+
+        public void rysujPlansze() {
+            for (int i = 0; i < heightB; i++) {
+                for (int j = 0; j < widthB; j++) {
+                    Organizm tmpOrganizm = swiat.getPlansza()[i][j];
+                    if (tmpOrganizm != null) {
+                        polePlanszy[i][j].setEmpty(false);
+                        polePlanszy[i][j].setEnabled(false);
+                        polePlanszy[i][j].setKolor(tmpOrganizm.getKolor());
+                    } else {
+                        polePlanszy[i][j].setEmpty(true);
+                        polePlanszy[i][j].setEnabled(true);
+                        polePlanszy[i][j].setKolor(Color.WHITE);
                     }
                 }
-
-
+            }
+        }
 
 
         public int getSizeX() {
@@ -334,54 +331,52 @@ public class SwiatGrafika implements ActionListener, KeyListener {
             return polePlanszy;
         }
 
+    }
+
+    private class ListaOrganizmow extends JFrame {
+        private final String[] listaOrg;
+        private final Organizm.TypOrganizmu[] typOrganizmuList;
+        private final JList jList;
+
+        public ListaOrganizmow(int x, int y, point place) {
+            super("Lista organizmow");
+            setBounds(x, y, 100, 300);
+            listaOrg = new String[]{"Barszcz Sosnowskiego", "Mlecz", "Guarana", "Trawa",
+                    "Wilcze jagody", "Antylopa", "Lis", "Owca", "Wilk", "Zolw", "Cyber owca"};
+            typOrganizmuList = new Organizm.TypOrganizmu[]{Organizm.TypOrganizmu.BARSZCZ_SOSNOWSKIEGO,
+                    Organizm.TypOrganizmu.MLECZ, Organizm.TypOrganizmu.GUARANA, Organizm.TypOrganizmu.TRAWA,
+                    Organizm.TypOrganizmu.WILCZE_JAGODY, Organizm.TypOrganizmu.ANTYLOPA,
+                    Organizm.TypOrganizmu.LIS,
+                    Organizm.TypOrganizmu.OWCA, Organizm.TypOrganizmu.WILK,
+                    Organizm.TypOrganizmu.ZOLW, Organizm.TypOrganizmu.CYBER_OWCA
+            };
+
+            jList = new JList(listaOrg);
+            jList.setVisibleRowCount(listaOrg.length);
+            jList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            jList.addListSelectionListener(new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent e) {
+                    Organizm creature = SpawnerOrganisms.spawnNewCreation(typOrganizmuList[jList.getSelectedIndex()], swiat, place);
+                    swiat.addOrganism(creature);
+                    Log.addToLog("Was born " + creature.infoOrganism());
+                    rysujSwiat();
+                    dispose();
+                }
+            });
+
+            JScrollPane sp = new JScrollPane(jList);
+            add(sp);
+
+            setVisible(true);
         }
 
-        private class ListaOrganizmow extends JFrame {
-            private String[] listaOrg;
-            private Organizm.TypOrganizmu[] typOrganizmuList;
-            private JList jList;
-
-            public ListaOrganizmow(int x, int y, point place) {
-                super("Lista organizmow");
-                setBounds(x, y, 100, 300);
-                listaOrg = new String[]{"Barszcz Sosnowskiego", "Mlecz", "Guarana", "Trawa",
-                        "Wilcze jagody", "Antylopa", "Lis", "Owca", "Wilk", "Zolw", "Cyber owca"};
-                typOrganizmuList = new Organizm.TypOrganizmu[]{Organizm.TypOrganizmu.BARSZCZ_SOSNOWSKIEGO,
-                        Organizm.TypOrganizmu.MLECZ, Organizm.TypOrganizmu.GUARANA, Organizm.TypOrganizmu.TRAWA,
-                        Organizm.TypOrganizmu.WILCZE_JAGODY, Organizm.TypOrganizmu.ANTYLOPA,
-                        Organizm.TypOrganizmu.LIS,
-                        Organizm.TypOrganizmu.OWCA, Organizm.TypOrganizmu.WILK,
-                        Organizm.TypOrganizmu.ZOLW, Organizm.TypOrganizmu.CYBER_OWCA
-                };
-
-                jList = new JList(listaOrg);
-                jList.setVisibleRowCount(listaOrg.length);
-                jList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                jList.addListSelectionListener(new ListSelectionListener() {
-                    @Override
-                    public void valueChanged(ListSelectionEvent e) {
-                        Organizm creature = SpawnerOrganisms.spawnNewCreation(typOrganizmuList[jList.getSelectedIndex()], swiat, place);
-                        swiat.addOrganism(creature);
-                        Log.addToLog("Was born " + creature.infoOrganism());
-                        rysujSwiat();
-                        dispose();
-                    }
-                });
-
-                JScrollPane sp = new JScrollPane(jList);
-                add(sp);
-
-                setVisible(true);
-            }
-
-        }
+    }
 
     private class AnimalInfo extends JPanel {
         private final int ILOSC_TYPOW = 12;
-        private JButton[] jButtons;
+        private final JButton[] jButtons;
 
-
-//        private final String title = "List of animals and plants";
         private JTextArea textArea;
 
         public AnimalInfo() {
@@ -443,41 +438,35 @@ public class SwiatGrafika implements ActionListener, KeyListener {
     }
 
 
-            private void startGame() {
-                planszaGrafika = new PlanszaGrafika(swiat);
-                mainPanel.add(planszaGrafika);
+    private void startGame() {
+        planszaGrafika = new PlanszaGrafika(swiat);
+        mainPanel.add(planszaGrafika);
 
-                logGrafika = new LogGrafika();
-                mainPanel.add(logGrafika);
+        logGrafika = new LogGrafika();
+        mainPanel.add(logGrafika);
 
-                animalInfo = new AnimalInfo();
-                mainPanel.add(animalInfo);
+        animalInfo = new AnimalInfo();
+        mainPanel.add(animalInfo);
 
-                rysujSwiat();
-            }
+        rysujSwiat();
+    }
 
-            public void rysujSwiat() {
-                planszaGrafika.rysujPlansze();
-                logGrafika.showLog();
-                SwingUtilities.updateComponentTreeUI(frame);
-                frame.requestFocusInWindow();
-            }
+    public void rysujSwiat() {
+        planszaGrafika.rysujPlansze();
+        logGrafika.showLog();
+        SwingUtilities.updateComponentTreeUI(frame);
+        frame.requestFocusInWindow();
+    }
 
-            public Swiat getSwiat() {
-                return swiat;
-            }
+    public Swiat getSwiat() {
+        return swiat;
+    }
 
-            public PlanszaGrafika getPlanszaGraphics() {
-                return planszaGrafika;
-            }
+    public PlanszaGrafika getPlanszaGraphics() {
+        return planszaGrafika;
+    }
 
-            public LogGrafika getLogGrafika() {
-                return logGrafika;
-            }
-
-
-
-
+    public LogGrafika getLogGrafika() {
+        return logGrafika;
+    }
 }
-
-

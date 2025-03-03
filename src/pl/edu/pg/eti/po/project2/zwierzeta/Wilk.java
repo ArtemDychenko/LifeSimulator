@@ -13,7 +13,7 @@ public class Wilk extends Zwierze {
     private static final int INICJATYWA_WILKA = 5;
 
     public Wilk(Swiat swiat, point polozenie, int turaUrodzenia) {
-        super( swiat, polozenie, SILA_WILKA, INICJATYWA_WILKA,turaUrodzenia, TypOrganizmu.WILK);
+        super(swiat, polozenie, SILA_WILKA, INICJATYWA_WILKA, turaUrodzenia, TypOrganizmu.WILK);
         this.setZasiegRuchu(ZASIEG_RUCHU_WILKA);
         this.setSzansaWykonywaniaRuchu(SZANSA_WYKONYWANIA_RUCHU_WILKA);
         setKolor(new Color(64, 64, 64));

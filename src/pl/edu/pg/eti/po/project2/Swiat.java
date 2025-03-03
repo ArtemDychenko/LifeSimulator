@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.*;
 import java.io.File;
 import java.io.PrintWriter;
+
 public class Swiat {
     protected int widthB, heightB;
     protected Organizm[][] plansza;
@@ -30,7 +31,7 @@ public class Swiat {
         this.log = new Log();
         organizmy = new ArrayList<>();
         this.swiatGrafika = swiatGrafika;
-    };
+    }
 
     public Swiat(int widthB, int heightB, SwiatGrafika swiatGrafika) {
         this.widthB = widthB;
@@ -59,17 +60,16 @@ public class Swiat {
             getHuman().getSkill().iteratorFunction();
         }
         for (int i = 0; i < organizmy.size(); i++) {
-            if (organizmy.get(i).getCzyZywy() == false) {
+            if (!organizmy.get(i).getCzyZywy()) {
                 continue;
-            }
-            else if (organizmy.get(i).getTura() != tura) {
+            } else if (organizmy.get(i).getTura() != tura) {
                 organizmy.get(i).Akcja();
 
             }
         }
 
         for (int i = 0; i < organizmy.size(); i++) {
-            if (organizmy.get(i).getCzyZywy() == false) {
+            if (!organizmy.get(i).getCzyZywy()) {
                 organizmy.remove(i);
                 i--;
             }
@@ -81,7 +81,6 @@ public class Swiat {
 
 
     }
-
 
 
     public void ZapiszSwiat(String nameOfFile) {
@@ -183,7 +182,7 @@ public class Swiat {
         human = (Czlowiek) tmpOrganizm;
 
         //DODANIE INNYCH ORGANIZMOW
-        for(int i = 0; i < liczbaOrganizmow - 1; i++) {
+        for (int i = 0; i < liczbaOrganizmow - 1; i++) {
             place = findFreePlace();
             if (!(place.equals(new point(-192, -441)))) {
                 addOrganism(SpawnerOrganisms.spawnNewCreation(Organizm.losujGatunekOrganizmu(), this, place));
@@ -210,7 +209,7 @@ public class Swiat {
 
     public point findFreePlace() {
         Random rand = new Random();
-        for(int i = 0; i < heightB; i++){
+        for (int i = 0; i < heightB; i++) {
             for (int j = 0; j < widthB; j++) {
                 if (plansza[i][j] == null) {
                     while (true) {
@@ -225,11 +224,12 @@ public class Swiat {
     }
 
     public boolean placeIsFree(point place) {
-        if(plansza[place.getY()][place.getX()] == null) return true;
-        else return false;
+        return plansza[place.getY()][place.getX()] == null;
     }
 
-    public Czlowiek getHuman() {return human;}
+    public Czlowiek getHuman() {
+        return human;
+    }
 
     public void deleteOrganizm(Organizm organizm) {
         this.plansza[organizm.getPolozenie().getY()][organizm.getPolozenie().getX()] = null;
@@ -252,19 +252,44 @@ public class Swiat {
         }
         return false;
     }
-    public void setPauza(boolean value) {this.isPauza = value;}
-    public boolean IsHumanAlive() {return iSHumanAlive;}
-    public boolean getIsPauza() {return isPauza;}
+
+    public void setPauza(boolean value) {
+        this.isPauza = value;
+    }
+
+    public boolean IsHumanAlive() {
+        return iSHumanAlive;
+    }
+
+    public boolean getIsPauza() {
+        return isPauza;
+    }
+
     public Organizm contentOfPlace(point place) {
         return plansza[place.getY()][place.getX()];
     }
-    public Organizm[][] getPlansza() {return plansza;}
-    public boolean getIfKoniecGry() {return ifKoniecGry;};
-    public int getNumerTury() {return tura;}
+
+    public Organizm[][] getPlansza() {
+        return plansza;
+    }
+
+    public boolean getIfKoniecGry() {
+        return ifKoniecGry;
+    }
+
+    public int getNumerTury() {
+        return tura;
+    }
 
     public void setSwiatGrafika(SwiatGrafika swiatGrafika) {
         this.swiatGrafika = swiatGrafika;
     }
-    public int getWidthB() {return widthB;}
-    public int getHeightB() {return heightB;}
+
+    public int getWidthB() {
+        return widthB;
+    }
+
+    public int getHeightB() {
+        return heightB;
+    }
 }
