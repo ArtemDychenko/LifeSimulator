@@ -1,12 +1,11 @@
 LifeSimulator
 
-LifeSimulator is a life simulation in which organisms make decisions, evolve, and adapt to their environment.
+LifeSimulator is a life simulation in which organisms make various decisions.
 
 Features:
 
 - Simulation of the organisms' living environment
 - Various types of organisms with unique traits
-- Evolution and adaptation of organisms
 - Interactions between organisms, such as predation and reproduction
 
 Technologies:
